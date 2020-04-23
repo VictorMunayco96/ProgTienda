@@ -42,7 +42,7 @@ case 'GuardaryEditar':
 
 if(empty($IdProducto)){
 $Rspta=$MProducto->Insertar($IdCategoria, $Codigo, $Nombre, $StockMinTienda, $StockMinGeneral, $Descripcion, $imagen);
-echo $Rspta ? "REGISTRADO" : "NO SE PUDO REGISTRAR";
+echo $Rspta ? "$IdCategoria REGISTRADO" : "NO SE PUDO REGISTRAR";
 
 }else{
 
@@ -95,7 +95,7 @@ case 'Listar':
             "3"=>$Reg->StockMinTienda,
             "4"=>$Reg->StockMinGeneral,
             "5"=>$Reg->Codigo,
-            "6"=>"<img src='../Files/Productos/".$reg->Imagen."' height='50px' width='50px' >",
+            "6"=>"<img src='../Files/Productos/".$Reg->imagen."' height='50px' width='50px' >",
             "7"=>$Reg->Categoria,
             "8"=>($Reg->Estado)?'<span class="label bg-green">Activado</span>':
             '<span class="label bg-red">Desactivado</span>'

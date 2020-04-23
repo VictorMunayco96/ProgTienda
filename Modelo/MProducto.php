@@ -46,14 +46,14 @@ require "../Config/Conexion.php";
 
         public function Mostrar($IdProducto){
 
-            $Sql="Select * from Producto where IdProducto='$IdProducto'";
+            $Sql="Select IdProducto, IdCategoria, Codigo, Nombre, StockMinTienda, StockMinGeneral, Descripcion, Imagen as imagen, Estado  from Producto where IdProducto='$IdProducto'";
             return EjecutarConsultaSImpleFila($Sql);
 
         }
 
         public function Listar (){
 
-            $Sql="Select P.IdProducto, C.Categoria, P.Codigo, P.Nombre, P.StockMinTienda, P.StockMinGeneral, P.Descripcion, P.Imagen, P.Estado from Producto P
+            $Sql="Select P.IdProducto, C.Categoria, P.Codigo, P.Nombre, P.StockMinTienda, P.StockMinGeneral, P.Descripcion, P.Imagen as imagen, P.Estado from Producto P
             inner join Categoria C on C.IdCategoria= P.IdCategoria;";
             
             return EjecutarConsulta($Sql);

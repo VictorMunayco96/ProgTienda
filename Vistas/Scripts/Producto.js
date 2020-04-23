@@ -32,8 +32,11 @@ $("#Nombre").val("");
 $("#StockMinTienda").val("");
 $("#StockMinGeneral").val("");
 $("#Descripcion").val("");
-$("#Imagen").val("");
 
+$("#imagenmuestra").hide();
+
+
+$("#imagenmuestra").attr("src","");
 }
 
 function MostrarForm(flag){
@@ -145,6 +148,7 @@ function Mostrar(IdProducto)
             $("#StockMinTienda").val(data.StockMinTienda);
             $("#StockMinGeneral").val(data.StockMinGeneral);
             $("#Descripcion").val(data.Descripcion);
+            $("#imagen").val(data.imagen);
             $("#imagenmuestra").show();
             $("#imagenmuestra").attr("src","../Files/Productos/"+data.imagen);
             $("#imagenactual").val(data.imagen);
