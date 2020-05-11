@@ -15,7 +15,10 @@ switch ($_GET["Op"]){
 
 case 'GuardaryEditar':
 if(empty($IdSucursal)){
+
+
 $Rspta=$MSucursal->Insertar($IdTienda,$Direccion, $Departamento, $Provincia);
+
 echo $Rspta ? "REGISTRADO" : "NO SE PUDO REGISTRAR";
 
 }else{

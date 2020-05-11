@@ -12,24 +12,17 @@ $("#Formulario").on("submit",function(e){
 })
 
 
-$.post("../Ajax/ASucursal.php?Op=SelectTienda", function(r){
-
-    $("#IdTienda").html(r);
-    $('#IdTienda').selectpicker('refresh');
-    
-    
-    
-    });
-
 }
 function limpiar(){
 
-
-    $("#IdSucursal").val("");
-$("#IdTienda").val("");
-$("#Direccion").val("");
-$("#Departamento").val("");
-$("#Provincia").val("");
+    $("#IdProveedor").val("");
+$("#RazonSocial").val("");
+$("#TipoDocumento").val("");
+$("#NumDocumento").val("");
+$("#Rublo").val("");
+$("#NumCelular").val("");
+$("#Telf").val("");
+$("#Correo").val("");
 
 
 }
@@ -79,7 +72,7 @@ tabla=$("#tbllistado").dataTable(
 
     "ajax":{
 
-        url: '../Ajax/ASucursal.php?Op=Listar',
+        url: '../Ajax/AProveedor.php?Op=Listar',
         type : "get",
         dataType :"json",
         error: function(e){
@@ -103,7 +96,7 @@ var formData= new FormData($("#Formulario")[0]);
 
 $.ajax({
 
-url: "../Ajax/ASucursal.php?Op=GuardaryEditar",
+url: "../Ajax/AProveedor.php?Op=GuardaryEditar",
 type: "POST",
 data: formData,
 contentType: false,
@@ -123,28 +116,28 @@ success: function(datos){
 limpiar();
 }
 
-function Mostrar(IdSucursal)
+function Mostrar(IdProveedor)
 {
 
     
-    $.post("../Ajax/ASucursal.php?Op=Mostrar",{IdSucursal : IdSucursal}, function(data,status)
+    $.post("../Ajax/AProveedor.php?Op=Mostrar",{IdProveedor : IdProveedor}, function(data,status)
         {
             data =JSON.parse(data);
             
             MostrarForm(true);
 
-            $("#IdSucursal").val(data.IdSucursal);
-         
-            $("#IdTienda").val(data.IdTienda);
-            $("#IdTienda").selectpicker('refresh');
-
-        $("#Direccion").val(data.Direccion);
             
-
-        $("#Departamento").val(data.Departamento);
         
-        $("#Provincia").val(data.Provincia);
-            
+            $("#IdProveedor").val(data.IdProveedor);
+            $("#RazonSocial").val(data.RazonSocial);
+            $("#TipoDocumento").val(data.TipoDocumento);
+            $("#TipoDocumento").selectpicker('refresh');
+            $("#NumDocumento").val(data.NumDocumento);
+            $("#Rublo").val(data.Rublo);
+            $("#Rublo").selectpicker('refresh');
+            $("#NumCelular").val(data.NumCelular);
+            $("#Telf").val(data.Telf);
+            $("#Correo").val(data.Correo);
          
 
 
@@ -155,13 +148,13 @@ function Mostrar(IdSucursal)
 
 }
 
-function Desactivar(IdSucursal){
+function Desactivar(IdProveedor){
 
 bootbox.confirm("¿ESTA SEGURO DE DESACTIVAR EL REGISTRO?", function(result){
 
 if(result){
 
-    $.post("../Ajax/ASucursal.php?Op=Desactivar",{IdSucursal : IdSucursal}, function(e){
+    $.post("../Ajax/AProveedor.php?Op=Desactivar",{IdProveedor : IdProveedor}, function(e){
 
         bootbox.alert(e);
         tabla.ajax.reload();
@@ -179,13 +172,13 @@ if(result){
 
 
 
-function Activar(IdSucursal){
+function Activar(IdProveedor){
 
     bootbox.confirm("¿ESTA SEGURO DE ACTIVAR EL REGISTRO?", function(result){
     
     if(result){
     
-        $.post("../Ajax/ASucursal.php?Op=Activar",{IdSucursal : IdSucursal}, function(e){
+        $.post("../Ajax/AProveedor.php?Op=Activar",{IdProveedor : IdProveedor}, function(e){
     
             bootbox.alert(e);
             tabla.ajax.reload();

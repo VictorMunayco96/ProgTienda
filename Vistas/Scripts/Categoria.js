@@ -132,6 +132,7 @@ function Mostrar(IdCategoria)
             $("#IdCategoria").val(data.IdCategoria);
          
             $("#IdTipoProducto").val(data.IdTipoProducto);
+            $("#IdTipoProducto").selectpicker('refresh');
 
         $("#Categoria").val(data.Categoria);
             
