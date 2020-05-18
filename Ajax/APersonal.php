@@ -12,17 +12,19 @@ $TipoDocumento=isset($_POST["TipoDocumento"]) ? limpiarCadena($_POST["TipoDocume
 $NumDocumento=isset($_POST["NumDocumento"]) ? limpiarCadena($_POST["NumDocumento"]):"";
 $Area=isset($_POST["Area"]) ? limpiarCadena($_POST["Area"]):"";
 $Cargo=isset($_POST["Cargo"]) ? limpiarCadena($_POST["Cargo"]):"";
+$IdSucursal=isset($_POST["IdSucursal"]) ? limpiarCadena($_POST["IdSucursal"]):"";
+
 
 switch ($_GET["Op"]){
 
 case 'GuardaryEditar':
 if(empty($IdPersonal)){
-$Rspta=$MPersonal->Insertar($Nombre, $Apellido, $FecNac, $TipoDocumento, $NumDocumento, $Area,$Cargo);
+$Rspta=$MPersonal->Insertar($Nombre, $Apellido, $FecNac, $TipoDocumento, $NumDocumento, $Area,$Cargo,$IdSucursal);
 echo $Rspta ? "REGISTRADO" : "NO SE PUDO REGISTRAR";
 
 }else{
 
-    $Rspta=$MPersonal->Editar($IdPersonal, $Nombre, $Apellido, $FecNac, $TipoDocumento, $NumDocumento, $Area,$Cargo);
+    $Rspta=$MPersonal->Editar($IdPersonal, $Nombre, $Apellido, $FecNac, $TipoDocumento, $NumDocumento, $Area,$Cargo, $IdSucursal);
     echo $Rspta ? "EDITADO" : "NO SE PUDO EDITAR";
     
 
@@ -73,7 +75,8 @@ case 'Listar':
             "5"=>$Reg->NumDocumento,
             "6"=>$Reg->Area,
             "7"=>$Reg->Cargo,
-            "8"=>($Reg->Estado)?'<span class="label bg-green">Activado</span>':
+            "8"=>$Reg->Direccion." - ".$Reg->Departamento,
+            "9"=>($Reg->Estado)?'<span class="label bg-green">Activado</span>':
             '<span class="label bg-red">Desactivado</span>'
         
         );
@@ -87,6 +90,23 @@ case 'Listar':
         "aaData"=>$Data);
 
         echo json_encode($Result);
+
+
+break;
+
+
+case "SelectSucursal":
+
+    require_once "../Modelo/MSucursal.php";
+    $MSucursal = new MSucursal();
+
+    $Rspta=$MSucursal->SelectSucursal();
+
+    while($Reg = $Rspta->fetch_object()){
+
+        echo '<option value='.$Reg->IdSucursal.'>'.$Reg->Direccion."-".$Reg->Departamento.'</option>';
+
+    }
 
 
 break;

@@ -44,6 +44,7 @@ require 'Header.php';
                         <th>Documento</th>
                         <th>Area</th>
                         <th>Cargo</th>
+                        <th>Sucursal</th>
                    
                         <th>Estado</th>
 
@@ -62,6 +63,8 @@ require 'Header.php';
                         <th>Documento</th>
                         <th>Area</th>
                         <th>Cargo</th>
+                        <th>Sucursal</th>
+                   
                         <th>Estado</th>
 
 
@@ -130,6 +133,15 @@ require 'Header.php';
                     <option value="VENDEDOR">VENDEDOR</option>
                     <option value="SUPERVISOR">SUPERVISOR</option>
                     <option value="ADMINISTRADOR">ADMINISTRADOR</option>
+                    
+                    </select>
+                    </div>
+
+
+                    <div class="form-group col-log-6 col-md-6 col-sm-6 col-xs-12">
+                    <label>Sucursal:</label> 
+                    <select id="IdSucursal" name ="IdSucursal" class="form-control selectpicker" data-live-search="true" required> 
+                    
                     
                     </select>
                     </div>

@@ -13,28 +13,36 @@ $("#Formulario").on("submit",function(e){
 
 
 
-$.post("../Ajax/APersonal.php?Op=SelectSucursal", function(r){
+$.post("../Ajax/AUsuario.php?Op=SelectEmpleado", function(r){
 
-    $("#IdSucursal").html(r);
-    $('#IdSucursal').selectpicker('refresh');
+$("#IdEmpleado").html(r);
+$('#IdEmpleado').selectpicker('refresh');
+
+
+
+});
+
+$.post("../Ajax/AUsuario.php?Op=Permiso&Id=", function(r){
+
+    $("#Permiso").html(r);
+    $('#Permiso').selectpicker('refresh');
     
     
     
     });
+    
+
+
 
 
 }
 function limpiar(){
 
-    $("#IdPersonal").val("");
-$("#Nombre").val("");
-$("#Apellido").val("");
-$("#FecNac").val("");
-$("#TipoDocumento").val("");
-$("#NumDocumento").val("");
-$("#Area").val("");
-$("#Cargo").val("");
-$("#IdSucursal").val("");
+    $("#IdUsuario").val("");
+$("#Usuario").val("");
+$("#Contrasena").val("");
+$("#TipoUsuario").val("");
+
 
 }
 
@@ -83,7 +91,7 @@ tabla=$("#tbllistado").dataTable(
 
     "ajax":{
 
-        url: '../Ajax/APersonal.php?Op=Listar',
+        url: '../Ajax/AUsuario.php?Op=Listar',
         type : "get",
         dataType :"json",
         error: function(e){
@@ -107,7 +115,7 @@ var formData= new FormData($("#Formulario")[0]);
 
 $.ajax({
 
-url: "../Ajax/APersonal.php?Op=GuardaryEditar",
+url: "../Ajax/AUsuario.php?Op=GuardaryEditar",
 type: "POST",
 data: formData,
 contentType: false,
@@ -127,47 +135,53 @@ success: function(datos){
 limpiar();
 }
 
-function Mostrar(IdPersonal)
+function Mostrar(IdUsuario)
 {
 
     
-    $.post("../Ajax/APersonal.php?Op=Mostrar",{IdPersonal : IdPersonal}, function(data,status)
+    $.post("../Ajax/AUsuario.php?Op=Mostrar",{IdUsuario : IdUsuario}, function(data,status)
         {
             data =JSON.parse(data);
             
             MostrarForm(true);
+            $("#Sectores").val(data.Sector);
+            $("#Sectores").selectpicker('refresh');
+            $("#IdEmpleado").val(data.IdEmpleado);
+            $("#IdEmpleado").selectpicker('refresh');
+            $("#IdUsuario").val(data.IdUsuario);
+            $("#Usuario").val(data.Usuario);
+            $("#Contrasena").val(data.Contrasena);
+            $("#TipoUsuario").val(data.TipoUsuario);
+            $("#TipoUsuario").selectpicker('refresh');
+           
+        
 
-            $("#IdPersonal").val(data.IdPersonal);
-         
-            $("#Nombre").val(data.Nombre);
-            $("#Apellido").val(data.Apellido);
-            $("#FecNac").val(data.FecNac);
-            $("#TipoDocumento").val(data.TipoDocumento);
-            $("#TipoDocumento").selectpicker('refresh');
-            $("#NumDocumento").val(data.NumDocumento);
-            $("#Area").val(data.Area);
-            $("#Area").selectpicker('refresh');
-            $("#Cargo").val(data.Cargo);
-            $("#Cargo").selectpicker('refresh');
-            $("#IdSucursal").val(data.IdSucursal);
-            $("#IdSucursal").selectpicker('refresh');
          
 
 
 
 
-})
+});
+
+$.post("../Ajax/AUsuario.php?Op=Permiso&Id="+IdUsuario, function(r){
+
+    $("#Permiso").html(r);
+    $('#Permiso').selectpicker('refresh');
+    
+    
+    
+    });
 
 
 }
 
-function Desactivar(IdPersonal){
+function Desactivar(IdUsuario){
 
-bootbox.confirm("¿ESTA SEGURO DE DESACTIVAR EL REGISTRO?", function(result){
+bootbox.confirm("¿ESTA SEGURO DE DESACTIVAR EL USUARIO?", function(result){
 
 if(result){
 
-    $.post("../Ajax/APersonal.php?Op=Desactivar",{IdPersonal : IdPersonal}, function(e){
+    $.post("../Ajax/AUsuario.php?Op=Desactivar",{IdUsuario : IdUsuario}, function(e){
 
         bootbox.alert(e);
         tabla.ajax.reload();
@@ -185,13 +199,13 @@ if(result){
 
 
 
-function Activar(IdPersonal){
+function Activar(IdUsuario){
 
-    bootbox.confirm("¿ESTA SEGURO DE ACTIVAR EL REGISTRO?", function(result){
+    bootbox.confirm("¿ESTA SEGURO DE ACTIVAR EL USUARIO?", function(result){
     
     if(result){
     
-        $.post("../Ajax/APersonal.php?Op=Activar",{IdPersonal : IdPersonal}, function(e){
+        $.post("../Ajax/AUsuario.php?Op=Activar",{IdUsuario : IdUsuario}, function(e){
     
             bootbox.alert(e);
             tabla.ajax.reload();
@@ -208,4 +222,3 @@ function Activar(IdPersonal){
 
 
 init();
-

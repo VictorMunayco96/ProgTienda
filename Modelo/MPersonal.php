@@ -10,17 +10,17 @@ require "../Config/Conexion.php";
 
         }
 
-        public function Insertar($Nombre, $Apellido, $FecNac, $TipoDocumento, $NumDocumento, $Area,$Cargo){
+        public function Insertar($Nombre, $Apellido, $FecNac, $TipoDocumento, $NumDocumento, $Area,$Cargo,$IdSucursal){
 
-            $Sql="Insert into Personal(Nombre, Apellido, FecNac, Estado, TipoDocumento, NumDocumento, Area,Cargo) values('$Nombre', '$Apellido', '$FecNac', '1', '$TipoDocumento', '$NumDocumento', '$Area','$Cargo')";
+            $Sql="Insert into Personal(Nombre, Apellido, FecNac, Estado, TipoDocumento, NumDocumento, Area,Cargo, IdSucursal) values('$Nombre', '$Apellido', '$FecNac', '1', '$TipoDocumento', '$NumDocumento', '$Area','$Cargo','$IdSucursal')";
 
             return EjecutarConsulta($Sql);
 
         }       
         
-        public function Editar($IdPersonal, $Nombre, $Apellido, $FecNac, $TipoDocumento, $NumDocumento, $Area,$Cargo){
+        public function Editar($IdPersonal, $Nombre, $Apellido, $FecNac, $TipoDocumento, $NumDocumento, $Area,$Cargo,$IdSucursal){
 
-            $Sql=" Update Personal set Nombre='$Nombre', Apellido='$Apellido', FecNac='$FecNac', TipoDocumento='$TipoDocumento', NumDocumento='$NumDocumento', Area='$Area', Cargo='$Cargo' where IdPersonal='$IdPersonal';";
+            $Sql=" Update Personal set Nombre='$Nombre', Apellido='$Apellido', FecNac='$FecNac', TipoDocumento='$TipoDocumento', NumDocumento='$NumDocumento', Area='$Area', Cargo='$Cargo',IdSucursal='$IdSucursal' where IdPersonal='$IdPersonal';";
             
             return EjecutarConsulta($Sql);
 
@@ -52,7 +52,8 @@ require "../Config/Conexion.php";
 
         public function Listar (){
 
-            $Sql="Select * from Personal;";
+            $Sql="Select P.IdPersonal, P.Nombre, P.Apellido, P.FecNac, P.Estado, P.TipoDocumento,P.NumDocumento ,P.Area, P.Cargo, S.Direccion, S.Departamento from Personal P inner join Sucursal S
+             on S.IdSucursal=P.IdSucursal;";
             
             return EjecutarConsulta($Sql);
 

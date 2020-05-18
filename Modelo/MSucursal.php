@@ -61,7 +61,7 @@ require "../Config/Conexion.php";
 
         public function SelectSucursal (){
 
-            $Sql="Select * from Tienda where Estado=1;";
+            $Sql="Select * from Sucursal where Estado=1;";
             
             return EjecutarConsulta($Sql);
 

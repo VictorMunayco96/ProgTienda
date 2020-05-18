@@ -1,7 +1,7 @@
 <?php
 session_start();
 
-require_once "../Modelos/MUsuario.php";
+require_once "../Modelo/MUsuario.php";
 
 $MUsuario= new MUsuario();
 
@@ -10,6 +10,7 @@ $Usuario=isset($_POST["Usuario"]) ? limpiarCadena($_POST["Usuario"]):"";
 $Contrasena=isset($_POST["Contrasena"]) ? limpiarCadena($_POST["Contrasena"]):"";
 $TipoUsuario=isset($_POST["TipoUsuario"]) ? limpiarCadena($_POST["TipoUsuario"]):"";
 $IdPersonal=isset($_POST["IdPersonal"]) ? limpiarCadena($_POST["IdPersonal"]):"";
+$IdSucursal=isset($_POST["IdSucursal"]) ? limpiarCadena($_POST["IdSucursal"]):"";
 
 
 switch ($_GET["Op"]){
@@ -19,12 +20,13 @@ case 'GuardaryEditar':
     $ClaveHash=hash("SHA256",$Contrasena);
 if(empty($IdUsuario)){
 
-$Rspta=$MUsuario->Insertar($IdPersonal, $Usuario, $Contraseña, $TipoUsuario,$_POST['Permiso']);
+$Rspta=$MUsuario->Insertar($IdPersonal, $Usuario, $Contrasena, $TipoUsuario,$_POST['Permiso'],$IdSucursal);
 echo $Rspta ? "REGISTRADO" : "NO SE PUDO REGISTRAR";
 
 }else{
 
-    $Rspta=$MUsuario->Editar($IdUsuario,$IdPersonal, $Usuario, $Contraseña, $TipoUsuario,$_POST['Permiso']);
+    $Rspta=$MUsuario->Editar($IdUsuario,$IdPersonal, $Usuario, $Contrasena, $TipoUsuario,$_POST['Permiso'],$IdSucursal);
+    
     echo $Rspta ? "EDITADO" : "NO SE PUDO EDITAR";
     
 
@@ -71,8 +73,9 @@ case 'Listar':
             "1"=>$Reg->Usuario,
            
             "2"=>$Reg->TipoUsuario,
-            "3"=>$Reg->NombreE." ".$Reg->ApellidosE,
-            "4"=>$Reg->Sector,
+            "3"=>$Reg->Nombre." ".$Reg->Apellido,
+            
+            "4"=>$Reg->Direccion." - ".$Reg->Departamento,
             "5"=>($Reg->Estado)?'<span class="label bg-green">Activado</span>':
             '<span class="label bg-red">Desactivado</span>'
         
@@ -91,24 +94,42 @@ case 'Listar':
 
 break;
 
-case "SelectEmpleado":
+case "SelectPersonal":
 
-    require_once "../Modelos/MEmpleado.php";
-    $MEmpleado = new MEmpleado();
+    require_once "../Modelo/MPersonal.php";
+    $MPersonal = new MPersonal();
 
-    $Rspta=$MEmpleado->Select();
+    $Rspta=$MPersonal->SelectPersonal();
 
     while($Reg = $Rspta->fetch_object()){
 
-        echo '<option value=' .$Reg->IdEmpleado.'>'.$Reg->NombreE." ".$Reg->ApellidosE.'</option>';
+        echo '<option value=' .$Reg->IdPersonal.'>'.$Reg->Nombre." ".$Reg->Apellido.'</option>';
 
     }
 
 
 break;
 
+
+case "SelectSucursal":
+
+    require_once "../Modelo/MSucursal.php";
+    $MSucursal = new MSucursal();
+
+    $Rspta=$MSucursal->SelectSucursal();
+
+    while($Reg = $Rspta->fetch_object()){
+
+        echo '<option value='.$Reg->IdSucursal.'>'.$Reg->Direccion."-".$Reg->Departamento.'</option>';
+
+    }
+
+
+break;
+
+
 case "Permiso":
-    require_once "../Modelos/MPermiso.php";
+    require_once "../Modelo/MPermiso.php";
     $MPermiso = new MPermiso();
     $Rspta=$MPermiso->Listar();
 
@@ -150,10 +171,10 @@ array_push($Valores, $Per->IdPermiso);
         {
             //Declaramos las variables de sesión
            $_SESSION['IdUsuario']=$fetch->IdUsuario;
-           $_SESSION['Nombre']=$fetch->NombreE.' '.$fetch->ApellidosE;
+           $_SESSION['Nombre']=$fetch->Nombre.' '.$fetch->Apellido;
            $_SESSION['Usuario']=$fetch->Usuario;
-           $_SESSION['Sector']=$fetch->Sector;
-           $_SESSION['NumSemana']=date("W");
+           $_SESSION['IdSucursal']=$fetch->IdSucursal;
+        
            $_SESSION['TipoUsuario']=$fetch->TipoUsuario;
 
            
@@ -177,14 +198,13 @@ array_push($Valores, $Per->IdPermiso);
             in_array(1,$valores)?$_SESSION['Escritorio']=1:$_SESSION['Escritorio']=0;
             in_array(2,$valores)?$_SESSION['Almacen']=1:$_SESSION['Almacen']=0;
             in_array(3,$valores)?$_SESSION['Producto']=1:$_SESSION['Producto']=0;
-            in_array(4,$valores)?$_SESSION['Transporte']=1:$_SESSION['Transporte']=0;
-            in_array(5,$valores)?$_SESSION['Destino']=1:$_SESSION['Destino']=0;
+            in_array(5,$valores)?$_SESSION['Compras']=1:$_SESSION['Compras']=0;
+            in_array(7,$valores)?$_SESSION['Ventas']=1:$_SESSION['Ventas']=0;
             in_array(6,$valores)?$_SESSION['Personal']=1:$_SESSION['Personal']=0;
-            in_array(7,$valores)?$_SESSION['Pedido']=1:$_SESSION['Pedido']=0;
-            in_array(8,$valores)?$_SESSION['Panel']=1:$_SESSION['Panel']=0;
+            
             in_array(9,$valores)?$_SESSION['Acceso']=1:$_SESSION['Acceso']=0;
-            in_array(10,$valores)?$_SESSION['ConsulProd']=1:$_SESSION['ConsulProd']=0;
-            in_array(11,$valores)?$_SESSION['ConsulProd2']=1:$_SESSION['ConsulProd2']=0;
+            in_array(10,$valores)?$_SESSION['ConsulCompras']=1:$_SESSION['ConsulCompras']=0;
+            in_array(11,$valores)?$_SESSION['ConsulVentas']=1:$_SESSION['ConsulVentas']=0;
   
         }
         echo json_encode($fetch);
@@ -200,6 +220,9 @@ array_push($Valores, $Per->IdPermiso);
     header("Location: ../index.php");
     
     break;
+
+
+    
 
 }
 

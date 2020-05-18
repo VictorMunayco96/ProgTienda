@@ -10,9 +10,9 @@ require "../Config/Conexion.php";
 
         }
 
-        public function Insertar( $IdPersonal, $Usuario, $Contraseña, $TipoUsuario,$Permiso){
+        public function Insertar( $IdPersonal, $Usuario, $Contrasena, $TipoUsuario,$Permiso,$IdSucursal){
 
-            $Sql="Insert into Usuario ( IdPersonal, Usuario, Contraseña, TipoUsuario,Estado) values('$IdPersonal', '$Usuario', '$Contraseña', '$TipoUsuario',1)";
+            $Sql="Insert into Usuario ( IdPersonal, Usuario, Contrasena, TipoUsuario,Estado,IdSucursal) values('$IdPersonal', '$Usuario', '$Contrasena', '$TipoUsuario',1,'$IdSucursal')";
 
            // return EjecutarConsulta($Sql);
            $IdUsuarioNew=EjecutarConsulta_RetornarID($Sql);
@@ -35,9 +35,9 @@ require "../Config/Conexion.php";
 
         }       
         
-        public function Editar($IdUsuario, $IdPersonal, $Usuario, $Contraseña, $TipoUsuario){
+        public function Editar($IdUsuario, $IdPersonal, $Usuario, $Contrasena, $TipoUsuario,$Permiso, $IdSucursal){
 
-            $Sql="Update Usuario set IdPersonal='$IdPersonal', Usuario='$Usuario', Contraseña='$Contraseña', TipoUsuario='$TipoUsuario' where IdUsuario='$IdUsuario';";
+            $Sql="Update Usuario set IdPersonal='$IdPersonal', Usuario='$Usuario', Contrasena='$Contrasena', TipoUsuario='$TipoUsuario', IdSucursal='$IdSucursal' where IdUsuario='$IdUsuario'";
             
             return EjecutarConsulta($Sql);
 
@@ -93,8 +93,9 @@ require "../Config/Conexion.php";
 
         public function Listar (){
 
-            $Sql="Select U.IdUsuario, U.Usuario, U.Contrasena, U.TipoUsuario,P.Nombre,P.Apellido, U.Estado from Usuario U
-            inner join Personal P on U.IdPersonal=P.IdPersonal";
+            $Sql="Select U.IdUsuario, U.Usuario, U.Contrasena, U.TipoUsuario,P.Nombre,P.Apellido, U.Estado,S.Direccion, S.Departamento from Usuario U
+            inner join Personal P on U.IdPersonal=P.IdPersonal
+            inner join Sucursal S on S.IdSucursal=U.IdSucursal";
             
             return EjecutarConsulta($Sql);
 
@@ -103,7 +104,7 @@ require "../Config/Conexion.php";
 
         public function ListarMarcados($IdUsuario){
 
-            $Sql="Select * from UsuarioPermiso where IdUsuario='$IdUsuario'";
+            $Sql="Select * from DetallePermiso where IdUsuario='$IdUsuario'";
             return EjecutarConsulta($Sql);
     
             }
