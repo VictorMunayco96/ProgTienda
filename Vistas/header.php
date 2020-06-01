@@ -1,3 +1,10 @@
+<?php 
+
+if(strlen(session_id())<1)
+
+session_start();
+
+?>
 <!DOCTYPE html>
 <html>
   <head>
@@ -54,15 +61,15 @@
               <li class="dropdown user user-menu">
                 <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                   <img src="../public/dist/img/user2-160x160.jpg" class="user-image" alt="User Image">
-                  <span class="hidden-xs">Juan Carlos Arcila</span>
+                  <span class="hidden-xs"><?php echo $_SESSION['Nombre'];?></span>
                 </a>
                 <ul class="dropdown-menu">
                   <!-- User image -->
                   <li class="user-header">
                     <img src="../public/dist/img/user2-160x160.jpg" class="img-circle" alt="User Image">
                     <p>
-                      www.incanatoit.com - Desarrollando Software
-                      <small>www.youtube.com/jcarlosad7</small>
+                    <?php echo 'USUARIO: '.$_SESSION['Usuario'];?>
+                      <small>Calicel</small>
                     </p>
                   </li>
                   
@@ -70,7 +77,7 @@
                   <li class="user-footer">
                     
                     <div class="pull-right">
-                      <a href="#" class="btn btn-default btn-flat">Cerrar</a>
+                      <a href="../Ajax/AUsuario.php?Op=Salir" class="btn btn-default btn-flat">Cerrar</a>
                     </div>
                   </li>
                 </ul>
@@ -88,22 +95,31 @@
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu">
             <li class="header"></li>
-            <li>
-              <a href="#">
+            <?php
+            if($_SESSION['Escritorio']==1){ 
+              echo '<li>
+              <a href="Escritorio.php">
                 <i class="fa fa-tasks"></i> <span>Escritorio</span>
               </a>
-            </li>            
-            <li class="treeview">
+            </li>     ';
+            }
+            ?>          
+                   <?php 
+            if($_SESSION['Producto']==1){ 
+              echo '<li class="treeview">
               <a href="#">
-                <i class="fa fa-laptop"></i>
-                <span>Almacén</span>
+                <i class="fa fa-leaf"></i>
+                <span>Producto</span>
                 <i class="fa fa-angle-left pull-right"></i>
               </a>
               <ul class="treeview-menu">
-                <li><a href="articulo.php"><i class="fa fa-circle-o"></i> Artículos</a></li>
-                <li><a href="categoria.php"><i class="fa fa-circle-o"></i> Categorías</a></li>
+                <li><a href="TipoProducto.php"><i class="fa fa-circle-o"></i> Tipo Producto</a></li>
+                <li><a href="Categoria.php"><i class="fa fa-circle-o"></i> Categoria</a></li>
+                <li><a href="Producto.php"><i class="fa fa-circle-o"></i> Producto</a></li>
               </ul>
-            </li>
+            </li>';
+            }
+            ?>
             
             <li class="treeview">
               <a href="#">

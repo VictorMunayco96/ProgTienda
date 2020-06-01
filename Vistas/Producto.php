@@ -1,6 +1,6 @@
 <?php
 
-/*
+
 ob_start();
 session_start();
 
@@ -9,11 +9,11 @@ if(!isset($_SESSION["IdUsuario"])){
   header("LOCATION: Login.php");
 
 }else{
-*/
+
 require 'Header.php';
 
-/*if($_SESSION["Producto"]==1){
-*/?>
+if($_SESSION["Producto"]==1){
+?>
 <!--Contenido-->
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
@@ -166,13 +166,13 @@ require 'Header.php';
     </div><!-- /.content-wrapper -->
   <!--Fin-Contenido-->
 <?php
-/*}
+}
 else{
 
 require 'NoAcceso.php';
 
 }
-*/
+
 require 'Footer.php';
 ?>
 <script type="text/javascript" src="../Public/js/JsBarcode.all.min.js"></script>
@@ -180,7 +180,7 @@ require 'Footer.php';
 <script type="text/javascript" src="Scripts/Producto.js"></script>
 
 <?php 
-/*
+
 }
-ob_end_flush();*/
+ob_end_flush();
 ?>

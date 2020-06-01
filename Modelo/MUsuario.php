@@ -34,38 +34,42 @@ require "../Config/Conexion.php";
            return $Sw;
 
         }       
-        
-        public function Editar($IdUsuario, $IdPersonal, $Usuario, $Contrasena, $TipoUsuario,$Permiso, $IdSucursal){
+      
 
-            $Sql="Update Usuario set IdPersonal='$IdPersonal', Usuario='$Usuario', Contrasena='$Contrasena', TipoUsuario='$TipoUsuario', IdSucursal='$IdSucursal' where IdUsuario='$IdUsuario'";
+        public function Editar($IdUsuario,$Usuario, $Contrasena, $TipoUsuario, $IdPersonal,$Permiso,$IdSucursal){
+
+            $Sql=" Update Usuario set Usuario='$Usuario', 
+            Contrasena='$Contrasena', TipoUsuario='$TipoUsuario', IdPersonal='$IdPersonal', IdSucursal='$IdSucursal'  where IdUsuario='$IdUsuario';";
             
-            return EjecutarConsulta($Sql);
+            EjecutarConsulta($Sql);
 
             //ELIMINAR TODOS REGISTROS ASIGNADOS
-            $SqlDel="delete from DetallePermiso where IdUsuario='$IdUsuario'";
+             $SqlDel="delete from DetallePermiso where IdUsuario='$IdUsuario'";
 
-            EjecutarConsulta($SqlDel);
+             EjecutarConsulta($SqlDel);
 
-            //INGRESAR PERMISOS
+             //INGRESAR PERMISOS
 
-            $Num_Elementos=0;
+             $Num_Elementos=0;
 
-            $Sw=true;
- 
-            while($Num_Elementos< count($Permiso)){
- 
-             $Sql_Detalle = "Insert into DetallePermiso(IdUsuario, IdPermiso) values ('$IdUsuario','$Permiso[$Num_Elementos]')";
- 
-             EjecutarConsulta($Sql_Detalle) or $Sw = false;
- 
-             $Num_Elementos=$Num_Elementos+1;
- 
-            }
- 
-            return $Sw;
+             $Sw=true;
+  
+             while($Num_Elementos< count($Permiso)){
+  
+              $Sql_Detalle = "Insert into DetallePermiso(IdUsuario, IdPermiso) values ('$IdUsuario','$Permiso[$Num_Elementos]')";
+  
+              EjecutarConsulta($Sql_Detalle) or $Sw = false;
+  
+              $Num_Elementos=$Num_Elementos+1;
+  
+             }
+  
+             return $Sw;
 
 
         }
+
+
 
         public function Desactivar ($IdUsuario){
 
