@@ -90,6 +90,60 @@ case 'Listar':
 break;
 
 
+case "SelectProveedor":
+
+    require_once "../Modelo/MProveedor.php";
+    $MProveedor = new MProveedor();
+
+    $Rspta=$MProveedor->SelectProveedor();
+
+    while($Reg = $Rspta->fetch_object()){
+
+        echo '<option value='.$Reg->IdProveedor.'>'.$Reg->RazonSocial.'</option>';
+
+    }
+
+
+break;
+
+
+
+case "SelectProductoC":
+    
+    require_once "../Modelo/MProducto.php";
+$MProducto= new MProducto();
+    $Rspta=$MProducto->SelectProductoC();
+
+    $Data = Array();
+
+    while($Reg=$Rspta->fetch_object()){
+
+        $Data[]=array(
+
+            "0"=>'<button class="btn btn-warning" onclick="AgregarDetalle('.$Reg->IdProducto.',\''.$Reg->Nombre.'\')"><span class="fa fa-plus"></span></button>',
+            "1"=>$Reg->Nombre,
+            "2"=>$Reg->Descripcion,
+      
+            "3"=>$Reg->Codigo,
+            "4"=>"<img src='../Files/Productos/".$Reg->imagen."' height='50px' width='50px' >",
+            "5"=>$Reg->Categoria
+          
+        );
+    }
+
+    $Result = array(
+
+        "sEcho"=>1,
+        "iTotalRecords"=>count($Data),
+        "ITotalDisplayRecords"=>count($Data),
+        "aaData"=>$Data);
+
+        echo json_encode($Result);
+
+break;
+
+
+
 
 }
 

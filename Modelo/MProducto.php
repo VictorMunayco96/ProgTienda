@@ -61,9 +61,19 @@ require "../Config/Conexion.php";
         }
 
 
-        public function SelectProducto (){
+        /* public function SelectProducto (){
 
             $Sql="Select * from TipoProducto where Estado=1;";
+            
+            return EjecutarConsulta($Sql);
+
+        }
+ */
+
+        public function SelectProductoC (){
+
+            $Sql="Select P.IdProducto, C.Categoria, P.Codigo, P.Nombre, P.StockMinTienda, P.StockMinGeneral, P.Descripcion, P.Imagen as imagen, P.Estado from Producto P
+            inner join Categoria C on C.IdCategoria= P.IdCategoria where P.Estado='1';";
             
             return EjecutarConsulta($Sql);
 
