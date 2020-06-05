@@ -1,13 +1,14 @@
 <?php
-
+session_start();
 require_once "../Modelo/MCompra.php";
 
 $MCompra= new MCompra();
 
 $IdCompra=isset($_POST["IdCompra"]) ? limpiarCadena($_POST["IdCompra"]):"" ;
-$IdUsuario=isset($_POST["IdUsuario"]) ? limpiarCadena($_POST["IdUsuario"]):"";
+$IdUsuario=$_SESSION["IdUsuario"];
 $IdProveedor=isset($_POST["IdProveedor"]) ? limpiarCadena($_POST["IdProveedor"]):"";
-$TipoComprobante=isset($_POST["TipoComprobante"]) ? limpiarCadena($_POST["IdProveedor"]):"";
+$TipoComprobante=isset($_POST["TipoComprobante"]) ? limpiarCadena($_POST["TipoComprobante"]):"";
+$SerieCompro=isset($_POST["SerieCompro"]) ? limpiarCadena($_POST["SerieCompro"]):"";
 $NumCompro=isset($_POST["NumCompro"]) ? limpiarCadena($_POST["NumCompro"]):"";
 $Fecha=isset($_POST["Fecha"]) ? limpiarCadena($_POST["Fecha"]):"";
 $Asunto=isset($_POST["Asunto"]) ? limpiarCadena($_POST["Asunto"]):"";
@@ -19,7 +20,9 @@ switch ($_GET["Op"]){
 
 case 'GuardaryEditar':
 if(empty($IdCompra)){
-$Rspta=$MCompra->Insertar($IdUsuario, $IdProveedor, $TipoComprobante, $SerieCompro, $NumComprobante, $Fecha, $Asunto, $Descripcion, $EstadoCom, $Impuesto, $TotalCompra, $Estado,$_POST["IdProducto"],$_POST["Cantidad"],$_POST["PrecioCompra"],$_POST["CodigoBarra"]);
+$Rspta=$MCompra->Insertar($IdUsuario, $IdProveedor, $TipoComprobante, $SerieCompro, $NumCompro, $Fecha, $Asunto, $Descripcion, $Impuesto, $TotalCompra, $_POST["IdProducto"],$_POST["Cantidad"],$_POST["PrecioCompra"],$_POST["CodigoBarra"]);
+
+echo $IdUsuario." - ".$IdProveedor." - ". $TipoComprobante." - ". $SerieCompro." - ". $NumCompro." - ". $Fecha." - ". $Asunto." - ". $Descripcion." - ". $Impuesto." - ". $TotalCompra;
 echo $Rspta ? "COMPRA REGISTRADA" : "NO SE PUDO REGISTRAR TODOS LOS DATOS DEL INGRESO";
 
 }

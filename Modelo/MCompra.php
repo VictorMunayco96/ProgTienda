@@ -10,22 +10,43 @@ require "../Config/Conexion.php";
 
         }
 
-        public function Insertar($IdUsuario, $IdProveedor, $TipoComprobante, $SerieCompro, $NumComprobante, $Fecha, $Asunto, $Descripcion, $EstadoCom, $Impuesto, $TotalCompra, $Estado, $IdProducto, $Cantidad, $PrecioCompra, $Codigobarra){
+        public function Insertar($IdUsuario, $IdProveedor, $TipoComprobante, $SerieCompro, $NumCompro, $Fecha, $Asunto, $Descripcion, $Impuesto, $TotalCompra, $IdProducto, $Cantidad, $PrecioCompra, $Codigobarra){
 
-            $Sql="Insert into Compra (IdUsuario, IdProveedor, TipoComprobante, SerieCompro, NumComprobante, Fecha, Asunto, Descripcion, EstadoCom, Impuesto, TotalCompra, Estado) 
-            values('$IdUsuario', '$IdProveedor', '$TipoComprobante', '$SerieCompro', '$NumComprobante', '$Fecha', '$Asunto', '$Descripcion', '0', '$Impuesto', '$TotalCompra', '1')";
+            $Sql="Insert into Compra (IdUsuario, IdProveedor, TipoComprobante, SerieCompro, NumCompro, Fecha, Asunto, Descripcion, EstadoCom, Impuesto, TotalCompra, Estado) 
+            values('$IdUsuario', '$IdProveedor', '$TipoComprobante', '$SerieCompro', '$NumCompro', '$Fecha', '$Asunto', '$Descripcion', 0, '$Impuesto', '$TotalCompra', 1)";
 
+            echo "<script>
+            alert('$IdUsuario'+ '$IdProveedor'+ '$TipoComprobante'+ '$SerieCompro'+ '$NumCompro'+ '$Fecha' +'$Asunto'+ '$Descripcion' +'0' +'$Impuesto'+ '$TotalCompra'+ '1');
+          
+</script>";
+
+//return EjecutarConsulta($Sql);
             $IdCompraNew=EjecutarConsulta_RetornarID($Sql);
 
+            echo "<script>
+            alert('$IdCompraNew');
+          
+</script>";
+
             $Num_Elementos=0;
+
+            
 
             $Sw=true;
 
             while($Num_Elementos< count($IdProducto)){
 
                 $Sql_Detalle = "Insert into DetalleCompra(IdCompra, IdProducto, Cantidad, PrecioCompra, CodigoBarra, Estado) 
-                values ('$IdCompraNew','$IdProducto[$Num_Elementos]', '$Cantidad[$Num_Elementos]','$PrecioCompra[$Num_Elementos]','$CodigoBarra[$Num_Elementos]','1')";
+                values ('$IdCompraNew','$IdProducto[$Num_Elementos]', '$Cantidad[$Num_Elementos]','$PrecioCompra[$Num_Elementos]','$Codigobarra[$Num_Elementos]',1)";
     
+
+                echo "<script>
+                alert('$IdCompraNew'+' $IdProducto[$Num_Elementos]'+' $Cantidad[$Num_Elementos]'+' $PrecioCompra[$Num_Elementos]'+' $Codigobarra[$Num_Elementos]');
+              
+    </script>";
+
+    
+
                 EjecutarConsulta($Sql_Detalle) or $Sw = false;
     
                 $Num_Elementos=$Num_Elementos+1;

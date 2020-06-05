@@ -93,7 +93,7 @@ if($_SESSION["Compras"]==1){
 
                     <div class="form-group col-log-4 col-md-4 col-sm-12 col-xs-12">
                     <label>Fecha:</label>
-                    <input type="date" class="form-control"  name="FecNac" id="FecNac" required>
+                    <input type="date" class="form-control"  name="Fecha" id="Fecha" required>
                     </div>
 
                     <div class="form-group col-log-4 col-md-4 col-sm-12 col-xs-12">
