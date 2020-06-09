@@ -120,6 +120,28 @@ session_start();
             </li>';
             }
             ?>
+
+
+
+<?php 
+            if($_SESSION['Almacen']==1){ 
+              echo '<li class="treeview">
+              <a href="#">
+                <i class="fa fa-leaf"></i>
+                <span>Almacen</span>
+                <i class="fa fa-angle-left pull-right"></i>
+              </a>
+              <ul class="treeview-menu">
+                <li><a href="IngresoTienda.php"><i class="fa fa-circle-o"></i> Almacen Distribucion</a></li>
+               
+              </ul>
+            </li>';
+            }
+            ?>
+
+
+
+            
             
             <li class="treeview">
               <a href="#">
