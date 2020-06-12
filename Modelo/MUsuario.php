@@ -117,7 +117,7 @@ require "../Config/Conexion.php";
                     //Función para verificar el acceso al sistema
     public function verificar($login,$clave)
     {
-        $sql="Select U.IdUsuario, U.Usuario, U.Contrasena, U.TipoUsuario,U.IdPersonal,P.Nombre,P.Apellido,U.Estado from Usuario U
+        $sql="Select U.IdUsuario, U.Usuario, U.Contrasena, U.TipoUsuario,U.IdPersonal,P.Nombre,P.Apellido,U.Estado, U.IdSucursal from Usuario U
         inner join Personal P on U.IdPersonal=P.IdPersonal WHERE U.Usuario='$login' AND U.Contrasena='$clave' AND U.Estado='1'"; 
         return ejecutarConsulta($sql);  
     }

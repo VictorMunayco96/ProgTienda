@@ -70,7 +70,7 @@ require "../Config/Conexion.php";
 
 
 }
-
+?>
 
 
 
