@@ -73,6 +73,15 @@ require "../Config/Conexion.php";
 
         }
 
+        public function SelectCliente (){
+
+            $Sql="Select IdCliente, NumDocumento , Nombres, Apellidos  from Cliente C
+            where Estado='1';";
+            
+            return EjecutarConsulta($Sql);
+
+        }
+
 
 
 }

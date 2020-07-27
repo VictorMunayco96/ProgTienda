@@ -125,6 +125,23 @@ require "../Config/Conexion.php";
         }
 
 
+        public function SelectProductoV($IdSucursal){
+
+            
+            $Sql="  Select IT.IdIngresoTienda,P.Nombre, P.Descripcion , IT.IdSucursal,IT.PrecioVentaXMenor, IT.PrecioVentaXMayor,P.Imagen as imagen, DC.CodigoBarra  from IngresoTienda IT 
+            inner join Sucursal S on S.Idsucursal=IT.IdSucursal
+            inner join DetalleCompra DC on DC.IdDetalleCompra=IT.IdDetalleCompra
+            inner join Producto P on P.IdProducto= DC.IdProducto
+            inner join Usuario U on U.IdUsuario=IT.IdUsuario where IT.IdSucursal=$IdSucursal and P.Estado=1 and IT.EstadoEnvio=1; ";
+            
+            return EjecutarConsulta($Sql);
+
+        }
+
+
+
+
+
 
 
      

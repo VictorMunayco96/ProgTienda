@@ -12,7 +12,7 @@ if(!isset($_SESSION["IdUsuario"])){
 
 require 'Header.php';
 
-if($_SESSION["Compras"]==1){
+if($_SESSION["Ventas"]==1){
 ?>
 <!--Contenido-->
       <!-- Content Wrapper. Contains page content -->
@@ -24,7 +24,7 @@ if($_SESSION["Compras"]==1){
               <div class="col-md-12">
                   <div class="box">
                     <div class="box-header with-border">
-                          <h1 class="box-title">Compra
+                          <h1 class="box-title">Venta
                             <button class="btn btn-success" onclick="MostrarForm(true)"><i class="fa fa-plus-circle"></i> Agregar</button></h1>
                         <div class="box-tools pull-right">
                         </div>
@@ -37,14 +37,14 @@ if($_SESSION["Compras"]==1){
                         <thead>
 
                         <th>Opciones</th>
-                        <th>Razon Social</th>
+                       
                         <th>Tipo Comprobante</th>
                         <th>N° Comprobante</th>
-                        <th>Asunto</th>
-                        <th>Descripcion</th>
-                        <th>Impuesto</th>
-                        <th>Total Compra</th>
+                        <th>Cliente</th>
                         <th>Fecha</th>
+                        <th>Impuesto</th>
+                        <th>Total Venta</th>
+                     
                         <th>Usuario</th>
                         <th>Estado</th>
 
@@ -55,20 +55,16 @@ if($_SESSION["Compras"]==1){
 </tbody>
                       <tfoot>
 
-                  
                       <th>Opciones</th>
-                        <th>Razon Social</th>
-                        <th>Tipo Comprobante</th>
+                      <th>Tipo Comprobante</th>
                         <th>N° Comprobante</th>
-                        <th>Asunto</th>
-                        <th>Descripcion</th>
-                        <th>Impuesto</th>
-                        <th>Total Compra</th>
+                        <th>Cliente</th>
                         <th>Fecha</th>
+                        <th>Impuesto</th>
+                        <th>Total Venta</th>
+                     
                         <th>Usuario</th>
                         <th>Estado</th>
-
-
 
                     </tfoot>
                       
@@ -86,21 +82,17 @@ if($_SESSION["Compras"]==1){
                
 
 
-                    <div class="form-group col-log-8 col-md-8 col-sm-12 col-xs-12">
-                    <label>Proveedor:</label>
-                    <select id="IdProveedor" name ="IdProveedor" class="form-control selectpicker" data-live-search="true"> </select>
+                    <div class="form-group col-log-12 col-md-12 col-sm-12 col-xs-12">
+                    <label>Cliente:</label>
+                    <select id="IdCliente" name ="IdCliente" class="form-control selectpicker" data-live-search="true"> </select>
                     </div>
 
-                    <div class="form-group col-log-4 col-md-4 col-sm-12 col-xs-12">
-                    <label>Fecha:</label>
-                    <input type="date" class="form-control"  name="Fecha" id="Fecha" required>
-                    </div>
+                 
 
                     <div class="form-group col-log-4 col-md-4 col-sm-12 col-xs-12">
                     <label>Tipo Comprobante:</label>
                     <select id="TipoComprobante" name ="TipoComprobante" class="form-control selectpicker" data-live-search="true"> 
                     <option value="BOLETA">BOLETA</option>
-                    <option value="FACTURA">FACTURA</option>
                     <option value="TICKET">TICKET</option>
                     
                     </select>
@@ -109,28 +101,20 @@ if($_SESSION["Compras"]==1){
                     <div class="form-group col-log-3 col-md-3 col-sm-6 col-xs-6">
                     <label>Serie:</label>
                     <input type="hidden" name="IdCompra" id="IdCompra">
-                    <input type="text" class="form-control" placeholder="Serie" name="SerieCompro" id="SerieCompro" required>
+                    <input type="text" class="form-control" placeholder="Serie" name="SerieCompro" id="SerieCompro" >
                     </div>
 
                     <div class="form-group col-log-5 col-md-5 col-sm-6 col-xs-6">
                     <label>Numero:</label>
-                    <input type="number" class="form-control" placeholder="Numero" name="NumCompro" id="NumCompro" required>
+                    <input type="number" class="form-control" placeholder="Numero" name="NumCompro" id="NumCompro" >
                     </div>
 
 
-                    <div class="form-group col-log-4 col-md-4 col-sm-6 col-xs-6">
-                    <label>Asunto:</label>
-                    <input type="text" class="form-control" placeholder="Asunto" name="Asunto" id="Asunto" >
-                    </div>
-
-                    <div class="form-group col-log-4 col-md-4 col-sm-6 col-xs-6">
-                    <label>Descripcion:</label>
-                    <input type="text" class="form-control" placeholder="Descripcion" name="Descripcion" id="Descripcion" >
-                    </div>
+                
 
                     <div class="form-group col-log-4 col-md-4 col-sm-12 col-xs-12">
                     <label>Impuesto:</label>
-                    <input type="text" class="form-control" placeholder="Impuesto" name="Impuesto" id="Impuesto" required>
+                    <input type="text" class="form-control" placeholder="Impuesto" name="Impuesto" id="Impuesto" >
                     </div>
 
 
@@ -159,8 +143,8 @@ if($_SESSION["Compras"]==1){
 <th>Opciones</th>
 <th>Articulo</th>
 <th>Cantidad</th>
-<th>Precio Compra</th>
-<th>Codigo</th>
+<th>Precio Venta</th>
+
 <th>Subtotal</th>
 
 </thead>
@@ -174,9 +158,9 @@ if($_SESSION["Compras"]==1){
 <th></th>
 <th></th>
 <th></th>
-<th></th>
 
-<th><h4 id="Total">S/. 0.00</h4><input type="hidden" name="TotalCompra" id="TotalCompra"></th>
+
+<th><h4 id="Total">S/. 0.00</h4><input type="hidden" name="TotalVenta" id="TotalVenta"></th>
 
 </tfood>
 
@@ -236,9 +220,10 @@ if($_SESSION["Compras"]==1){
                 <th>Opciones</th>
                 <th>Nombre</th>
                 <th>Descripcion</th>
+                     <th>Precio</th>
                 <th>Código</th>
                 <th>Imagen</th>
-                <th>Categoria</th>
+           
                
             </thead>
             <tbody>
@@ -248,9 +233,11 @@ if($_SESSION["Compras"]==1){
             <th>Opciones</th>
                 <th>Nombre</th>
                 <th>Descripcion</th>
+                <th>Precio</th>
+                
                 <th>Código</th>
                 <th>Imagen</th>
-                <th>Categoria</th>
+          
             </tfoot>
           </table>
         </div>
@@ -275,7 +262,7 @@ require 'NoAcceso.php';
 require 'Footer.php';
 ?>
 
-<script type="text/javascript" src="Scripts/Compra.js"></script>
+<script type="text/javascript" src="Scripts/Venta.js"></script>
 
 <?php 
 

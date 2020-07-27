@@ -20,7 +20,7 @@ require "../Config/Conexion.php";
         
         public function Editar($IdTipoProducto, $TipoProducto){
 
-            $Sql=" Update TipoProducto set TipoTipoProducto='$TipoProducto' where IdTipoProducto='$IdTipoProducto';";
+            $Sql=" Update TipoProducto set TipoProducto='$TipoProducto' where IdTipoProducto='$IdTipoProducto';";
             
             return EjecutarConsulta($Sql);
 

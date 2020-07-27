@@ -10,7 +10,7 @@ if(mysqli_connect_errno()){
 
     printf("Fallo conexion a la base de datos :%s\n",mysqli_connect_errr());
     exit();
-}
+} 
    
 
 

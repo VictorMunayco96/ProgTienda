@@ -1,6 +1,6 @@
 <?php
 
-/*
+
 ob_start();
 session_start();
 
@@ -9,11 +9,11 @@ if(!isset($_SESSION["IdUsuario"])){
   header("LOCATION: Login.php");
 
 }else{
-*/
+
 require 'Header.php';
 
-/*if($_SESSION["Producto"]==1){
-*/?>
+if($_SESSION["Ventas"]==1){
+?>
 <!--Contenido-->
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
@@ -81,7 +81,7 @@ require 'Header.php';
                         </table>
                     </div>
 
-                    <div class="panel-body" style="height: 400px;" id="FormularioRegistros">
+                    <div class="panel-body" style="height: 500px;" id="FormularioRegistros">
                     
                     <form name="Formulario" id="Formulario" method="POST">
 
@@ -178,20 +178,20 @@ require 'Header.php';
     </div><!-- /.content-wrapper -->
   <!--Fin-Contenido-->
 <?php
-/*}
+}
 else{
 
 require 'NoAcceso.php';
 
 }
-*/
+
 require 'Footer.php';
 ?>
 
 <script type="text/javascript" src="Scripts/Cliente.js"></script>
 
 <?php 
-/*
+
 }
-ob_end_flush();*/
+ob_end_flush();
 ?>

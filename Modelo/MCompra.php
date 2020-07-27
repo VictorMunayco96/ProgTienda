@@ -15,19 +15,19 @@ require "../Config/Conexion.php";
             $Sql="Insert into Compra (IdUsuario, IdProveedor, TipoComprobante, SerieCompro, NumCompro, Fecha, Asunto, Descripcion, EstadoCom, Impuesto, TotalCompra, Estado) 
             values('$IdUsuario', '$IdProveedor', '$TipoComprobante', '$SerieCompro', '$NumCompro', '$Fecha', '$Asunto', '$Descripcion', 0, '$Impuesto', '$TotalCompra', 1)";
 
-            echo "<script>
+           /*  echo "<script>
             alert('$IdUsuario'+ '$IdProveedor'+ '$TipoComprobante'+ '$SerieCompro'+ '$NumCompro'+ '$Fecha' +'$Asunto'+ '$Descripcion' +'0' +'$Impuesto'+ '$TotalCompra'+ '1');
           
-</script>";
+</script>"; */
 
 //return EjecutarConsulta($Sql);
             $IdCompraNew=EjecutarConsulta_RetornarID($Sql);
 
-            echo "<script>
+         /*    echo "<script>
             alert('$IdCompraNew');
           
 </script>";
-
+ */
             $Num_Elementos=0;
 
             
@@ -78,10 +78,20 @@ require "../Config/Conexion.php";
 
         public function Mostrar($IdCompra){
 
-            $Sql="SELECT * from Compra where IdCompra='$IdCompra'";
+            $Sql="SELECT IdCompra, IdUsuario, Idproveedor, TipoComprobante, SerieCompro, NumCompro, DATE(Fecha) as Fecha, Asunto, Descripcion, Impuesto, TotalCompra from Compra where IdCompra='$IdCompra'";
             return EjecutarConsultaSImpleFila($Sql);
 
         }
+
+        public function listarDetalle($IdCompra)
+	{
+		$sql="SELECT DC.IdCompra,DC.IdProducto, P.Nombre, DC.Cantidad, DC.PrecioCompra, DC.CodigoBarra FROM DetalleCompra DC inner join Producto P on P.IdProducto=DC.IdProducto  
+        where DC.IdCompra='$IdCompra'";
+		return ejecutarConsulta($sql);
+	}
+
+
+
 
         public function Listar (){
 

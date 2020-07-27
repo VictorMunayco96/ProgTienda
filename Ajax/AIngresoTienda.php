@@ -131,10 +131,6 @@ case 'ListarDetalleCompra':
             $DataP[]=array(
     
              
-                
-    
-    
-    
                 "0"=>'<button class="btn btn-success" onclick="AgregarIngresoTienda('.$RegP->IdDetalleCompra.')"><i class="fa fa-plus"></i></button>'.
                 ' <button class="btn btn-warning" onclick="ListarIngresoTienda('.$RegP->IdDetalleCompra.')"><i class="fa fa-eye"></i></button>',
     

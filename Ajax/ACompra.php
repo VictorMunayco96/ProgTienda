@@ -22,7 +22,6 @@ case 'GuardaryEditar':
 if(empty($IdCompra)){
 $Rspta=$MCompra->Insertar($IdUsuario, $IdProveedor, $TipoComprobante, $SerieCompro, $NumCompro, $Fecha, $Asunto, $Descripcion, $Impuesto, $TotalCompra, $_POST["IdProducto"],$_POST["Cantidad"],$_POST["PrecioCompra"],$_POST["CodigoBarra"]);
 
-echo $IdUsuario." - ".$IdProveedor." - ". $TipoComprobante." - ". $SerieCompro." - ". $NumCompro." - ". $Fecha." - ". $Asunto." - ". $Descripcion." - ". $Impuesto." - ". $TotalCompra;
 echo $Rspta ? "COMPRA REGISTRADA" : "NO SE PUDO REGISTRAR TODOS LOS DATOS DEL INGRESO";
 
 }
@@ -51,6 +50,43 @@ case 'Mostrar':
 
 break;
 
+
+case 'listarDetalle':
+    //Recibimos el idingreso
+    $id=$_GET['id'];
+
+    $rspta = $MCompra->listarDetalle($id);
+    $total=0;
+    echo '<thead style="background-color:#A9D0F5">
+    <th>Opciones</th>
+    <th>Articulo</th>
+    <th>Cantidad</th>
+    <th>Precio Compra</th>
+    <th>Codigo</th>
+    <th>Subtotal</th>
+                            </thead>';
+
+    while ($reg = $rspta->fetch_object())
+            {
+                echo '<tr class="filas"><td></td><td>'.$reg->Nombre.'</td><td>'.$reg->Cantidad.'</td><td>'.$reg->PrecioCompra.'</td><td>'.$reg->CodigoBarra.'</td><td>'.$reg->PrecioCompra*$reg->Cantidad.'</td></tr>';
+                $total=$total+($reg->PrecioCompra*$reg->Cantidad);
+            }
+    echo '<tfoot>
+    <th>TOTAL</th>
+    <th></th>
+    <th></th>
+    <th></th>
+    <th></th>
+   
+    
+    <th><h4 id="Total">S/. '.$total.' </h4><input type="hidden" name="TotalCompra" id="TotalCompra"></th>
+    
+                            </tfoot>';
+break;
+
+
+
+
 case 'Listar':
 
     $Rspta=$MCompra->Listar();
@@ -61,9 +97,9 @@ case 'Listar':
 
         $Data[]=array(
 
-            "0"=>($Reg->Estado)?'<button class="btn btn-warning" onclick="Mostrar('.$Reg->IdCompra.')"><i class="fa fa-pencil"></i></button>'.
+            "0"=>($Reg->Estado)?'<button class="btn btn-warning" onclick="Mostrar('.$Reg->IdCompra.')"><i class="fa fa-eye"></i></button>'.
             ' <button class="btn btn-danger" onclick="Anular('.$Reg->IdCompra.')"><i class="fa fa-close"></i></button>':
-            '<button class="btn btn-warning" onclick="Mostrar('.$Reg->IdCompra.')"><i class="fa fa-pencil"></i></button>',
+            '<button class="btn btn-warning" onclick="Mostrar('.$Reg->IdCompra.')"><i class="fa fa-eye"></i></button>',
             "1"=>$Reg->RazonSocial,
             "2"=>$Reg->TipoComprobante,
             "3"=>$Reg->SerieCompro."-".$Reg->NumCompro,

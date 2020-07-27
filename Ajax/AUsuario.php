@@ -197,13 +197,13 @@ array_push($Valores, $Per->IdPermiso);
             in_array(1,$valores)?$_SESSION['Escritorio']=1:$_SESSION['Escritorio']=0;
             in_array(2,$valores)?$_SESSION['Producto']=1:$_SESSION['Producto']=0;
             in_array(3,$valores)?$_SESSION['Almacen']=1:$_SESSION['Almacen']=0;
-            in_array(4,$valores)?$_SESSION['Compras']=1:$_SESSION['Compras']=0;
-            in_array(5,$valores)?$_SESSION['Ventas']=1:$_SESSION['Ventas']=0;
-            in_array(6,$valores)?$_SESSION['Personal']=1:$_SESSION['Personal']=0;
-            
-            in_array(7,$valores)?$_SESSION['Acceso']=1:$_SESSION['Acceso']=0;
-            in_array(8,$valores)?$_SESSION['ConsulCompras']=1:$_SESSION['ConsulCompras']=0;
-            in_array(9,$valores)?$_SESSION['ConsulVentas']=1:$_SESSION['ConsulVentas']=0;
+            in_array(4,$valores)?$_SESSION['AlmacenSucursal']=1:$_SESSION['AlmacenSucursal']=0;
+            in_array(5,$valores)?$_SESSION['Compras']=1:$_SESSION['Compras']=0;
+            in_array(6,$valores)?$_SESSION['Ventas']=1:$_SESSION['Ventas']=0;
+            in_array(7,$valores)?$_SESSION['DatosTienda']=1:$_SESSION['DatosTienda']=0;
+            in_array(8,$valores)?$_SESSION['Acceso']=1:$_SESSION['Acceso']=0;
+            in_array(9,$valores)?$_SESSION['ConsulCompras']=1:$_SESSION['ConsulCompras']=0;
+            in_array(10,$valores)?$_SESSION['ConsulVentas']=1:$_SESSION['ConsulVentas']=0;
   
         }
         echo json_encode($fetch);

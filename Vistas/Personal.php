@@ -1,6 +1,6 @@
 <?php
 
-/*
+
 ob_start();
 session_start();
 
@@ -9,11 +9,11 @@ if(!isset($_SESSION["IdUsuario"])){
   header("LOCATION: Login.php");
 
 }else{
-*/
+
 require 'Header.php';
 
-/*if($_SESSION["Producto"]==1){
-*/?>
+if($_SESSION["DatosTienda"]==1){
+?>
 <!--Contenido-->
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
@@ -121,7 +121,7 @@ require 'Header.php';
                     <select id="Area" name ="Area" class="form-control selectpicker" data-live-search="true" required> 
                     <option value="SELECCIONE UN CAMPO" selected>SELECCIONE UN CAMPO</option>
                     <option value="VENTAS">VENTAS</option>
-                    <option value="ADMINISTRADOR">ADMINISTRADOR</option>
+                    <option value="ADMINISTRACION">ADMINISTRADOR</option>
                     
                     </select>
                     </div>
@@ -175,20 +175,20 @@ require 'Header.php';
     </div><!-- /.content-wrapper -->
   <!--Fin-Contenido-->
 <?php
-/*}
+}
 else{
 
 require 'NoAcceso.php';
 
 }
-*/
+
 require 'Footer.php';
 ?>
 
 <script type="text/javascript" src="Scripts/Personal.js"></script>
 
 <?php 
-/*
+
 }
-ob_end_flush();*/
+ob_end_flush();
 ?>

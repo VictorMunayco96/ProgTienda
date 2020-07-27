@@ -12,10 +12,10 @@ $("#Formulario").on("submit",function(e){
 })
 
 
-$.post("../Ajax/ACompra.php?Op=SelectProveedor", function(r){
+$.post("../Ajax/AVenta.php?Op=SelectCliente", function(r){
 
-    $("#IdProveedor").html(r);
-    $('#IdProveedor').selectpicker('refresh');
+    $("#IdCliente").html(r);
+    $('#IdCliente').selectpicker('refresh');
     
     
     
@@ -62,7 +62,7 @@ $("#ListadoRegistros").hide();
 $("#FormularioRegistros").show();
 $("#BtnGuardar").prop("disabled",false);
 
-ListarProductoC();
+ListarProductoV();
 
 
 }else{
@@ -100,7 +100,7 @@ tabla=$("#tbllistado").dataTable(
 
     "ajax":{
 
-        url: '../Ajax/ACompra.php?Op=Listar',
+        url: '../Ajax/AVenta.php?Op=Listar',
         type : "get",
         dataType :"json",
         error: function(e){
@@ -116,7 +116,7 @@ tabla=$("#tbllistado").dataTable(
 
 }
 
-function ListarProductoC(){
+function ListarProductoV(){
 
     tabla=$("#TblProductos").dataTable(
         
@@ -131,7 +131,7 @@ function ListarProductoC(){
     
         "ajax":{
     
-            url: '../Ajax/ACompra.php?Op=SelectProductoC',
+            url: '../Ajax/AVenta.php?Op=SelectProductoV',
             type : "get",
             dataType :"json",
             error: function(e){
@@ -158,7 +158,7 @@ var formData= new FormData($("#Formulario")[0]);
 
 $.ajax({
 
-url: "../Ajax/ACompra.php?Op=GuardaryEditar",
+url: "../Ajax/AVenta.php?Op=GuardaryEditar",
 type: "POST",
 data: formData,
 contentType: false,
@@ -177,26 +177,25 @@ success: function(datos){
 limpiar();
 }
 
-function Mostrar(IdCompra)
+function Mostrar(IdVenta)
 {
 
     
-    $.post("../Ajax/ACompra.php?Op=Mostrar",{IdCompra : IdCompra}, function(data,status)
+    $.post("../Ajax/AVenta.php?Op=Mostrar",{IdVenta : IdVenta}, function(data,status)
         {
             data =JSON.parse(data);
             
             MostrarForm(true);
 
-            $("#IdCompra").val(data.IdCompra);
-            $("#IdProveedor").val(data.IdProveedor);
-            $('#IdProveedor').selectpicker('refresh');
+            $("#IdVenta").val(data.IdVenta);
+            $("#IdCliente").val(data.IdCliente);
+            $('#IdCliente').selectpicker('refresh');
             $("#TipoComprobante").val(data.TipoComprobante);
             $('#TipoComprobante').selectpicker('refresh');
             $("#SerieCompro").val(data.SerieCompro);
             $("#NumCompro").val(data.NumCompro);
-            $("#Fecha").val(data.Fecha);
-            $("#Asunto").val(data.Asunto);
-            $("#Descripcion").val(data.Descripcion);
+        
+       
 
             $("#Impuesto").val(data.Impuesto);
 
@@ -206,7 +205,7 @@ function Mostrar(IdCompra)
 		$("#btnAgregarArt").hide();
  	});
 
- 	$.post("../Ajax/ACompra.php?Op=listarDetalle&id="+IdCompra,function(r){
+ 	$.post("../Ajax/AVenta.php?Op=listarDetalle&id="+IdVenta,function(r){
 	        $("#Detalles").html(r);
 	});
 
@@ -272,22 +271,22 @@ function MarcarImpuesto()
   }
 
 
-  function AgregarDetalle(IdProducto,Nombre)
+  function AgregarDetalle(IdIngresoTienda,Nombre,Descripcion,Precio)
   {
   	var Cantidad=1;
-    var PrecioCompra=1;
+  
     var CodigoBarra=1;
     
 
-    if (IdProducto!="")
+    if (IdIngresoTienda!="")
     {
-    	var subtotal=Cantidad*PrecioCompra;
+    	var subtotal=Cantidad*Precio;
     	var fila='<tr class="filas" id="fila'+cont+'">'+
     	'<td><button type="button" class="btn btn-danger" onclick="eliminarDetalle('+cont+')">X</button></td>'+
-    	'<td><input type="hidden" name="IdProducto[]" value="'+IdProducto+'">'+Nombre+'</td>'+
+    	'<td><input type="hidden" name="IdIngresoTienda[]" value="'+IdIngresoTienda+'">'+Nombre+" "+Descripcion+'</td>'+
     	'<td><input type="number" name="Cantidad[]" id="Cantidad[]" value="'+Cantidad+'"></td>'+
-    	'<td><input type="number" name="PrecioCompra[]" id="PrecioCompra[]" value="'+PrecioCompra+'"></td>'+
-    	'<td><input type="number" name="CodigoBarra[]" value="'+CodigoBarra+'"></td>'+
+    	'<td><input type="number" name="Precio[]" id="Precio[]"  value="'+Precio+'"></td>'+
+    
     	'<td><span name="SubTotal" id="SubTotal'+cont+'">'+subtotal+'</span></td>'+
     	'<td><button type="button" onclick="modificarSubototales()" class="btn btn-info"><i class="fa fa-refresh"></i></button></td>'+
     	'</tr>';
@@ -306,7 +305,7 @@ function MarcarImpuesto()
   function modificarSubototales()
   {
   	var cant = document.getElementsByName("Cantidad[]");
-    var prec = document.getElementsByName("PrecioCompra[]");
+    var prec = document.getElementsByName("Precio[]");
     var sub = document.getElementsByName("SubTotal");
 
     for (var i = 0; i <cant.length; i++) {
@@ -330,7 +329,7 @@ function MarcarImpuesto()
       total += document.getElementsByName("SubTotal")[i].value;
   }
   $("#Total").html("S/. " + total);
-  $("#TotalCompra").val(total);
+  $("#TotalVenta").val(total);
   evaluar();
 }
 

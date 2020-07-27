@@ -1,6 +1,6 @@
 <?php
 
-/*
+
 ob_start();
 session_start();
 
@@ -9,11 +9,11 @@ if(!isset($_SESSION["IdUsuario"])){
   header("LOCATION: Login.php");
 
 }else{
-*/
+
 require 'Header.php';
 
-/*if($_SESSION["Producto"]==1){
-*/?>
+if($_SESSION["Almacen"]==1){
+?>
 <!--Contenido-->
       <!-- Content Wrapper. Contains page content -->
       <div class="content-wrapper">
@@ -119,17 +119,17 @@ require 'Header.php';
                     
                     <div class="form-group col-log-6 col-md-6 col-sm-6 col-xs-12">
                     <label>NumCelular</label> 
-                    <input type="number" class="form-control" placeholder="N° Celular" name="NumCelular" id="NumCelular" required>
+                    <input type="number" class="form-control" placeholder="N° Celular" name="NumCelular" id="NumCelular">
                     </div>
 
                     <div class="form-group col-log-6 col-md-6 col-sm-6 col-xs-12">
                     <label>Telefono</label> 
-                    <input type="number" class="form-control" placeholder="Telefono" name="Telf" id="Telf" required>
+                    <input type="number" class="form-control" placeholder="Telefono" name="Telf" id="Telf" >
                     </div>
 
                     <div class="form-group col-log-6 col-md-6 col-sm-6 col-xs-12">
                     <label>Correo</label> 
-                    <input type="email" class="form-control" placeholder="Correo" name="Correo" id="Correo" required>
+                    <input type="email" class="form-control" placeholder="Correo" name="Correo" id="Correo">
                     </div>
 
                     
@@ -166,20 +166,20 @@ require 'Header.php';
     </div><!-- /.content-wrapper -->
   <!--Fin-Contenido-->
 <?php
-/*}
+}
 else{
 
 require 'NoAcceso.php';
 
 }
-*/
+
 require 'Footer.php';
 ?>
 
 <script type="text/javascript" src="Scripts/Proveedor.js"></script>
 
 <?php 
-/*
+
 }
-ob_end_flush();*/
+ob_end_flush();
 ?>
