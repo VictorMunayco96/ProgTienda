@@ -52,7 +52,7 @@ require "../Config/Conexion.php";
 
         public function Listar (){
 
-            $Sql="Select * from TipoProducto;";
+            $Sql="Select * from TipoProducto where Estado=1;";
             
             return EjecutarConsulta($Sql);
 

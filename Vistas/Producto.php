@@ -125,7 +125,7 @@ if($_SESSION["Producto"]==1){
                     <div class="form-group col-log-6 col-md-6 col-sm-6 col-xs-12">
                     <label>Codigo:</label>
                     
-                    <input type="number" class="form-control" placeholder="Codigo" name="Codigo" id="Codigo">
+                    <input type="number" class="form-control" placeholder="Codigo" name="Codigo" id="Codigo" require>
                     <button class="btn btn-success" type="button" onclick="GenerarBarcode()">Generar</button>
                             <button class="btn btn-info" type="button" onclick="imprimir()">Imprimir</button>
                             <div id="Print">

@@ -70,7 +70,7 @@ if($_SESSION["Producto"]==1){
                     <form name="Formulario" id="Formulario" method="POST">
 
                     <div class="form-group col-log-6 col-md-6 col-sm-6 col-xs-12">
-                    <label>Tipo Producto:</label>
+                    <label>Categoria:</label>
                     <input type="hidden" name="IdTipoProducto" id="IdCategoria">
                     <input type="text" class="form-control" placeholder="Categoria" name="Categoria" id="Categoria" required>
                     </div>

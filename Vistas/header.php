@@ -133,6 +133,7 @@ session_start();
               </a>
               <ul class="treeview-menu">
                 <li><a href="IngresoTienda.php"><i class="fa fa-circle-o"></i> Almacen Distribucion</a></li>
+                <li><a href="StockSucursal.php"><i class="fa fa-circle-o"></i> Almacen Por Sucursal</a></li>
                
               </ul>
             </li>';

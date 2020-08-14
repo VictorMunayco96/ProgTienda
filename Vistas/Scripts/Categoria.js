@@ -84,7 +84,7 @@ tabla=$("#tbllistado").dataTable(
 
     },
     "bDestroy":true,
-    "iDisplayLength":5,
+    "iDisplayLength":10,
     "order":[[0,"desc"]]
 
 }).DataTable();

@@ -102,6 +102,7 @@ if($_SESSION["Compras"]==1){
                     <option value="BOLETA">BOLETA</option>
                     <option value="FACTURA">FACTURA</option>
                     <option value="TICKET">TICKET</option>
+                    <option value="NINGUNO">NINGUNO</option>
                     
                     </select>
                     </div>
@@ -109,12 +110,12 @@ if($_SESSION["Compras"]==1){
                     <div class="form-group col-log-3 col-md-3 col-sm-6 col-xs-6">
                     <label>Serie:</label>
                     <input type="hidden" name="IdCompra" id="IdCompra">
-                    <input type="text" class="form-control" placeholder="Serie" name="SerieCompro" id="SerieCompro" required>
+                    <input type="text" class="form-control" placeholder="Serie" name="SerieCompro" id="SerieCompro">
                     </div>
 
                     <div class="form-group col-log-5 col-md-5 col-sm-6 col-xs-6">
                     <label>Numero:</label>
-                    <input type="number" class="form-control" placeholder="Numero" name="NumCompro" id="NumCompro" required>
+                    <input type="number" class="form-control" placeholder="Numero" name="NumCompro" id="NumCompro">
                     </div>
 
 
@@ -159,7 +160,7 @@ if($_SESSION["Compras"]==1){
 <th>Opciones</th>
 <th>Articulo</th>
 <th>Cantidad</th>
-<th>Precio Compra</th>
+<th>Precio Compra UND</th>
 <th>Codigo</th>
 <th>Subtotal</th>
 

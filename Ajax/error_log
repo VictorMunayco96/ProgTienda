@@ -1,0 +1,13 @@
+[01-Jul-2020 19:28:37 UTC] PHP Warning:  mysqli::__construct(): (HY000/2002): Connection timed out in /home/cordibec/public_html/ProgTienda/Config/Conexion.php on line 5
+[01-Jul-2020 19:28:37 UTC] PHP Warning:  mysqli_query(): Couldn't fetch mysqli in /home/cordibec/public_html/ProgTienda/Config/Conexion.php on line 7
+[01-Jul-2020 19:28:37 UTC] PHP Fatal error:  Uncaught Error: Call to undefined function mysqli_connect_errr() in /home/cordibec/public_html/ProgTienda/Config/Conexion.php:11
+Stack trace:
+#0 /home/cordibec/public_html/ProgTienda/Modelo/MTipoProducto.php(3): require()
+#1 /home/cordibec/public_html/ProgTienda/Ajax/ATipoProducto.php(3): require_once('/home/cordibec/...')
+#2 {main}
+  thrown in /home/cordibec/public_html/ProgTienda/Config/Conexion.php on line 11
+[02-Jul-2020 02:26:09 UTC] PHP Parse error:  syntax error, unexpected 'if' (T_IF) in /home/cordibec/public_html/ProgTienda/Ajax/AStocksPorSucursal.php on line 45
+[06-Jul-2020 03:31:04 UTC] PHP Fatal error:  Uncaught Error: Call to a member function fetch_object() on boolean in /home/cordibec/public_html/ProgTienda/Ajax/ACategoria.php:57
+Stack trace:
+#0 {main}
+  thrown in /home/cordibec/public_html/ProgTienda/Ajax/ACategoria.php on line 57

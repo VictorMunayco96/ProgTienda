@@ -53,7 +53,7 @@ require "../Config/Conexion.php";
         public function Listar (){
 
             $Sql="Select C.IdCategoria, TP.TipoProducto, C.Categoria, C.Estado from Categoria C
-            inner join TipoProducto TP on TP.IdTipoProducto=C.IdTipoProducto;";
+            inner join TipoProducto TP on TP.IdTipoProducto=C.IdTipoProducto where C.Estado=1;";
             
             return EjecutarConsulta($Sql);
 

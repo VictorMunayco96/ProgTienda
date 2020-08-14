@@ -42,7 +42,7 @@ case 'GuardaryEditar':
 
 if(empty($IdProducto)){
 $Rspta=$MProducto->Insertar($IdCategoria, $Codigo, $Nombre, $StockMinTienda, $StockMinGeneral, $Descripcion, $imagen);
-echo $Rspta ? "$IdCategoria REGISTRADO" : "NO SE PUDO REGISTRAR";
+echo $Rspta ? "REGISTRADO" : "NO SE PUDO REGISTRAR";
 
 }else{
 

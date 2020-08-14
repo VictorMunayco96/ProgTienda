@@ -122,6 +122,10 @@ if($_SESSION["DatosTienda"]==1){
                     <option value="SELECCIONE UN CAMPO" selected>SELECCIONE UN CAMPO</option>
                     <option value="VENTAS">VENTAS</option>
                     <option value="ADMINISTRACION">ADMINISTRADOR</option>
+                     <option value="GERENCIA_GENERAL">GERENCIA GENERAL</option>
+                      <option value="JEFATURA_DE_VENTAS">JEFATURA DE VENTAS</option>
+                      <option value="JEFATURA_DE_OPERACIONES">JEFATURA DE OPERACIONES</option>
+                      <option value="TIENDA">TIENDA</option>
                     
                     </select>
                     </div>
@@ -130,10 +134,17 @@ if($_SESSION["DatosTienda"]==1){
                     <label>Cargo:</label> 
                     <select id="Cargo" name ="Cargo" class="form-control selectpicker" data-live-search="true" required> 
                     <option value="SELECCIONE UN CAMPO" selected>SELECCIONE UN CAMPO</option>
-                    <option value="VENDEDOR">VENDEDOR</option>
-                    <option value="SUPERVISOR">SUPERVISOR</option>
-                    <option value="ADMINISTRADOR">ADMINISTRADOR</option>
+                    <option value="GERENTE_GENERAL">GERENTE GENERAL</option>
+                    <option value="ASISTENTE_DE_GERENCIA">ASISTENTE DE GERENCIA</option>
+                       <option value="SUPERVISOR_GENERAL">SUPERVISOR GENERAL</option>
+                    <option value="JEFE_PERSONA">JEFE PERSONAL</option>
+                    <option value="JEFE_VENTAS">JEFE VENTAS</option>
+                    <option value="JEFE_DE_OPERACIONES">JEFE DE OPERACIONES</option>
+                    <option value="ASISTENTE_DE_OPERACIONES">ASISTENTE DE OPERACIOENS</option>
                     
+                      <option value="RESPONSABLE_TIENDA">RESPONSABLE TIENDA</option>
+                      
+                       <option value="ASESOR_COMERCIAL_DE_TIENDA">ASESOR COMERCIAL DE TIENDA</option>
                     </select>
                     </div>
 

@@ -40,10 +40,7 @@ require "../Config/Conexion.php";
                 values ('$IdCompraNew','$IdProducto[$Num_Elementos]', '$Cantidad[$Num_Elementos]','$PrecioCompra[$Num_Elementos]','$Codigobarra[$Num_Elementos]',1)";
     
 
-                echo "<script>
-                alert('$IdCompraNew'+' $IdProducto[$Num_Elementos]'+' $Cantidad[$Num_Elementos]'+' $PrecioCompra[$Num_Elementos]'+' $Codigobarra[$Num_Elementos]');
               
-    </script>";
 
     
 
