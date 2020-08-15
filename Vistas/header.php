@@ -33,7 +33,7 @@ session_start();
     <link rel="stylesheet" type="text/css" href="../Public/css/bootstrap-select.min.css">
 
   </head>
-  <body class="hold-transition skin-blue-light sidebar-mini">
+  <body class="hold-transition skin-blue sidebar-mini">
     <div class="wrapper">
 
       <header class="main-header">
@@ -51,6 +51,7 @@ session_start();
           <!-- Sidebar toggle button-->
           <a href="#" class="sidebar-toggle" data-toggle="offcanvas" role="button">
             <span class="sr-only">Navegación</span>
+            
           </a>
           <!-- Navbar Right Menu -->
           <div class="navbar-custom-menu">
@@ -94,7 +95,8 @@ session_start();
         <section class="sidebar">       
           <!-- sidebar menu: : style can be found in sidebar.less -->
           <ul class="sidebar-menu">
-            <li class="header"></li>
+         
+            <li class="header">NAVEGATION</li>
             <?php
             if($_SESSION['Escritorio']==1){ 
               echo '<li>
