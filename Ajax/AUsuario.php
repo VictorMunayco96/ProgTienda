@@ -156,7 +156,7 @@ array_push($Valores, $Per->IdPermiso);
 
     break;
 
-    case 'verificar':
+    case "verificar":
         $logina=limpiarCadena($_POST['logina']);
         $clavea=limpiarCadena($_POST['clavea']);
  
