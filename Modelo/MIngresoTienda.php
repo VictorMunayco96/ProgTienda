@@ -14,7 +14,7 @@ require "../Config/Conexion.php";
 
          
            
-            $Sql="Insert into IngresoTienda (Cantidad, IdSucursal, IdUsuario, PrecioVentaXMenor, PrecioVentaXMayor,Estado, EstadoEnvio, IdDetalleCompra,FechaReg,FechaRecepcion) 
+            $Sql="INSERT INTO IngresoTienda (Cantidad, IdSucursal, IdUsuario, PrecioVentaXMenor, PrecioVentaXMayor,Estado, EstadoEnvio, IdDetalleCompra,FechaReg,FechaRecepcion) 
             values('$Cantidad', '$IdSucursal', '$IdUsuario', '$PrecioVentaXMenor', '$PrecioVentaXMayor', 1, 0 ,'$IdDetalleCompra',(Select Now()), null);";
 
             return EjecutarConsulta($Sql);
